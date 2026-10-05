@@ -1,0 +1,25 @@
+{
+    "name": "vankosoft/swoole-websocket-bundle",
+    "description": "Swoole Websocket for Symfony",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vankosoft\\SwooleWebsocketBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ivan I. Atanasov",
+            "email": "i.atanasov77@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        
+        "symfony/framework-bundle": "^7.4|^8.1",
+        "symfony/console": "^7.4|^8.1",
+        "symfony/config": "^7.4|^8.1",
+        "symfony/dependency-injection": "^7.4|^8.1"
+    }
+}

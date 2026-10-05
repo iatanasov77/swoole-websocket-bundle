@@ -1,0 +1,27 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    vs_websocket_logger:
+        class: Vankosoft\SwooleWebsocketBundle\Logger\WebsocketLogger
+        public: true
+        arguments:
+            - '@monolog.logger.test_websocket'
+            - '%env(APP_ENV)%'
+    
+    vs_websocket_game_command:
+        class: Vankosoft\SwooleWebsocketBundle\Command\WebsocketServerCommand
+        arguments:
+            - '@vs_websocket_logger'
+            - "%vs_websocket.document_root%"
+            - '@vs_websocket_game_handler'
+        tags:
+            - 'console.command'
+    
+    vs_websocket_game_handler:
+        class: Vankosoft\SwooleWebsocketBundle\Websocket\ServerHandler
+        arguments:
+            - '@vs_websocket_logger'
+            - '@serializer'
+            - "%vs_websocket.exeption_trace%"
