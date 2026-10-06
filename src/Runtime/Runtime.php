@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Runtime;
+<?php namespace Vankosoft\WebsocketBundle\Runtime;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Runtime\RunnerInterface;

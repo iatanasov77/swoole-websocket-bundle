@@ -1,8 +1,8 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Event;
+<?php namespace Vankosoft\WebsocketBundle\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 use Swoole\WebSocket\Frame;
-use Vankosoft\SwooleWebsocketBundle\Websocket\Server;
+use Vankosoft\WebsocketBundle\Websocket\Server;
 
 class MessageEvent extends Event
 {

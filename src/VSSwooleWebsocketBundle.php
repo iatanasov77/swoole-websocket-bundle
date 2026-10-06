@@ -1,12 +1,12 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle;
+<?php namespace Vankosoft\WebsocketBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-use Vankosoft\SwooleWebsocketBundle\DependencyInjection\VSSwooleWebsocketExtension;
+use Vankosoft\WebsocketBundle\DependencyInjection\VSSwooleWebsocketExtension;
 
-class VSSwooleWebsocketBundle extends AbstractBundle
+class VSWebsocketBundle extends AbstractBundle
 {
     public function build( ContainerBuilder $container ): void
     {

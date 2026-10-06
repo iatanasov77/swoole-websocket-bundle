@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Websocket;
+<?php namespace Vankosoft\WebsocketBundle\Websocket;
 
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;

@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Logger;
+<?php namespace Vankosoft\WebsocketBundle\Logger;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 use Psr\Log\LoggerInterface;
