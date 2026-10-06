@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\WebsocketBundle\Websocket;
+<?php namespace Vankosoft\WebsocketBundle\Websocket\Server;
 
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;

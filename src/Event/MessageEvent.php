@@ -2,7 +2,7 @@
 
 use Symfony\Contracts\EventDispatcher\Event;
 use Swoole\WebSocket\Frame;
-use Vankosoft\WebsocketBundle\Websocket\Server;
+use Vankosoft\WebsocketBundle\Websocket\Server\Server;
 
 class MessageEvent extends Event
 {

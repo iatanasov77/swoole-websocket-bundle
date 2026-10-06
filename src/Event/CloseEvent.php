@@ -1,7 +1,7 @@
 <?php namespace Vankosoft\WebsocketBundle\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
-use Vankosoft\WebsocketBundle\Websocket\Server;
+use Vankosoft\WebsocketBundle\Websocket\Server\Server;
 
 class CloseEvent extends Event
 {
