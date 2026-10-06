@@ -1,3 +1,9 @@
+1.1.2	|	Release date: **06.10.2026**
+============================================
+* New Features:
+  - Add Websocket Client Abstraction.
+
+
 1.1.1	|	Release date: **06.10.2026**
 ============================================
 * New Features:
