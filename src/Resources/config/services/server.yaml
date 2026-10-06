@@ -10,16 +10,16 @@ services:
             - '@monolog.logger.test_websocket'
             - '%env(APP_ENV)%'
     
-    vs_websocket_game_command:
+    vs_websocket_server_command:
         class: Vankosoft\SwooleWebsocketBundle\Command\WebsocketServerCommand
         arguments:
             - '@vs_websocket_logger'
             - "%vs_websocket.document_root%"
-            - '@vs_websocket_game_handler'
+            - '@vs_websocket_server_handler'
         tags:
             - 'console.command'
     
-    vs_websocket_game_handler:
+    vs_websocket_server_handler:
         class: Vankosoft\SwooleWebsocketBundle\Websocket\ServerHandler
         arguments:
             - '@vs_websocket_logger'

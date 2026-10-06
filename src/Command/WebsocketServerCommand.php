@@ -12,8 +12,8 @@ use Vankosoft\SwooleWebsocketBundle\Websocket\Server;
 use Vankosoft\SwooleWebsocketBundle\Websocket\ServerHandlerInterface;
 
 #[AsCommand(
-    name: 'vgp:websocket-swoole:game',
-    description: 'Start WebSocket Swoole for Game',
+    name: 'vankosoft:swoole-websocket:server',
+    description: 'Start Swoole WebSocket Server',
     hidden: false
 )]
 final class WebsocketServerCommand extends Command
@@ -61,11 +61,9 @@ final class WebsocketServerCommand extends Command
         /**
          * @NOTE POSSIX SIGNAL CODES: https://www.php.net/manual/en/pcntl.constants.php#115603
          */
-        //$this->logger->log( "Possix Signal: " . $signo, 'GameServer' );
-        
         switch ( $signo ) {
             case SIGTERM:
-                $this->gamesHandler->serverWasTerminated();
+                $this->serverHandler->serverWasTerminated();
                 exit;
                 break;
             case SIGHUP:
