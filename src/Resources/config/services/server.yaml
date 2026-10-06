@@ -1,3 +1,7 @@
+parameters:
+    vs_websocket.document_root: "%kernel.project_dir%/public/game-platform"
+    vs_websocket.exeption_trace: "%env(bool:WEBSOCKET_EXCEPTION_TRACE)%"
+
 services:
     _defaults:
         autowire: true

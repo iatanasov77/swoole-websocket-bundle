@@ -10,7 +10,7 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use AVankosoft\SwooleWebsocketBundle\Event\CloseEvent;
+use Vankosoft\SwooleWebsocketBundle\Event\CloseEvent;
 use Vankosoft\SwooleWebsocketBundle\Event\MessageEvent;
 use Vankosoft\SwooleWebsocketBundle\Event\OpenEvent;
 
