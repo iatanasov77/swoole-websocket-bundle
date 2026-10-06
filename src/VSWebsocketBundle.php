@@ -4,7 +4,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-use Vankosoft\WebsocketBundle\DependencyInjection\VSSwooleWebsocketExtension;
+use Vankosoft\WebsocketBundle\DependencyInjection\VSWebsocketExtension;
 
 class VSWebsocketBundle extends AbstractBundle
 {
@@ -15,6 +15,6 @@ class VSWebsocketBundle extends AbstractBundle
 
     public function getContainerExtension(): ?ExtensionInterface
     {
-        return new VSSwooleWebsocketExtension();
+        return new VSWebsocketExtension();
     }
 }
