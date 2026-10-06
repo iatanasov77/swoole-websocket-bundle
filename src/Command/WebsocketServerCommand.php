@@ -8,8 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 use Vankosoft\WebsocketBundle\Runtime\Runtime;
-use Vankosoft\WebsocketBundle\Websocket\Server;
-use Vankosoft\WebsocketBundle\Websocket\ServerHandlerInterface;
+use Vankosoft\WebsocketBundle\Websocket\Server\Server;
+use Vankosoft\WebsocketBundle\Websocket\Server\ServerHandlerInterface;
 
 #[AsCommand(
     name: 'vankosoft:swoole-websocket:server',

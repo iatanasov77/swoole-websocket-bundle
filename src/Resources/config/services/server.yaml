@@ -24,7 +24,7 @@ services:
             - 'console.command'
     
     vs_websocket_server_handler:
-        class: Vankosoft\WebsocketBundle\Websocket\ServerHandler
+        class: Vankosoft\WebsocketBundle\Websocket\Server\ServerHandler
         arguments:
             - '@vs_websocket_logger'
             - '@serializer'

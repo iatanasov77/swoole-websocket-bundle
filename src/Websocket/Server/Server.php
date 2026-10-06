@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\WebsocketBundle\Websocket;
+<?php namespace Vankosoft\WebsocketBundle\Websocket\Server;
 
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

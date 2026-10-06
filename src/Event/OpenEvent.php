@@ -2,7 +2,7 @@
 
 use Symfony\Contracts\EventDispatcher\Event;
 use Swoole\Http\Request;
-use Vankosoft\WebsocketBundle\Websocket\Server;
+use Vankosoft\WebsocketBundle\Websocket\Server\Server;
 
 class OpenEvent extends Event
 {
