@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class VSSwooleWebsocketExtension extends Extension
 {
-    public function load( array $configs, ContainerBuilder $container )
+    public function load( array $config, ContainerBuilder $container ): void
     {
         $config = $this->processConfiguration( $this->getConfiguration([], $container), $config );
         
