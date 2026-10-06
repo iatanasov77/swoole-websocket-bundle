@@ -1,11 +1,11 @@
 {
-    "name": "vankosoft/swoole-websocket-bundle",
+    "name": "vankosoft/websocket-bundle",
     "description": "Swoole Websocket for Symfony",
     "type": "symfony-bundle",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Vankosoft\\SwooleWebsocketBundle\\": "src/"
+            "Vankosoft\\WebsocketBundle\\": "src/"
         }
     },
     "authors": [

@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Websocket;
+<?php namespace Vankosoft\WebsocketBundle\Websocket;
 
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;

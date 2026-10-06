@@ -8,14 +8,14 @@ services:
         autoconfigure: true
     
     vs_websocket_logger:
-        class: Vankosoft\SwooleWebsocketBundle\Logger\WebsocketLogger
+        class: Vankosoft\WebsocketBundle\Logger\WebsocketLogger
         public: true
         arguments:
             - '@monolog.logger.test_websocket'
             - '%env(APP_ENV)%'
     
     vs_websocket_server_command:
-        class: Vankosoft\SwooleWebsocketBundle\Command\WebsocketServerCommand
+        class: Vankosoft\WebsocketBundle\Command\WebsocketServerCommand
         arguments:
             - '@vs_websocket_logger'
             - "%vs_websocket.document_root%"
@@ -24,7 +24,7 @@ services:
             - 'console.command'
     
     vs_websocket_server_handler:
-        class: Vankosoft\SwooleWebsocketBundle\Websocket\ServerHandler
+        class: Vankosoft\WebsocketBundle\Websocket\ServerHandler
         arguments:
             - '@vs_websocket_logger'
             - '@serializer'

@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Runtime;
+<?php namespace Vankosoft\WebsocketBundle\Runtime;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -17,7 +17,7 @@ use Swoole\WebSocket\Server as WebSocketServer;
 
 use Cydrickn\PHPWatcher\Watcher;
 use Cydrickn\SocketIO;
-use Vankosoft\SwooleWebsocketBundle\Websocket;
+use Vankosoft\WebsocketBundle\Websocket;
 
 class Runner implements RunnerInterface
 {

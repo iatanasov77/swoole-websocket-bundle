@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\DependencyInjection;
+<?php namespace Vankosoft\WebsocketBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

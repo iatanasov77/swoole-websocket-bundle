@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Command;
+<?php namespace Vankosoft\WebsocketBundle\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -7,9 +7,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use Vankosoft\SwooleWebsocketBundle\Runtime\Runtime;
-use Vankosoft\SwooleWebsocketBundle\Websocket\Server;
-use Vankosoft\SwooleWebsocketBundle\Websocket\ServerHandlerInterface;
+use Vankosoft\WebsocketBundle\Runtime\Runtime;
+use Vankosoft\WebsocketBundle\Websocket\Server;
+use Vankosoft\WebsocketBundle\Websocket\ServerHandlerInterface;
 
 #[AsCommand(
     name: 'vankosoft:swoole-websocket:server',

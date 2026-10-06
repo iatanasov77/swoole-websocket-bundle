@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\SwooleWebsocketBundle\Websocket;
+<?php namespace Vankosoft\WebsocketBundle\Websocket;
 
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -10,9 +10,9 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use Vankosoft\SwooleWebsocketBundle\Event\CloseEvent;
-use Vankosoft\SwooleWebsocketBundle\Event\MessageEvent;
-use Vankosoft\SwooleWebsocketBundle\Event\OpenEvent;
+use Vankosoft\WebsocketBundle\Event\CloseEvent;
+use Vankosoft\WebsocketBundle\Event\MessageEvent;
+use Vankosoft\WebsocketBundle\Event\OpenEvent;
 
 class Server
 {
