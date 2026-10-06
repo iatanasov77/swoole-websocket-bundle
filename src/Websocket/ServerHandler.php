@@ -12,13 +12,13 @@ use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 class ServerHandler implements ServerHandlerInterface
 {
     /** @var MyLoggerInterface */
-    private $logger;
+    protected $logger;
     
     /** @var SerializerInterface */
-    private $serializer;
+    protected $serializer;
     
     /** @var bool */
-    private $logExceptionTrace;
+    protected $logExceptionTrace;
     
     public function __construct(
         MyLoggerInterface $logger,
