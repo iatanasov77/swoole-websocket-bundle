@@ -3,7 +3,6 @@
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use SplObjectStorage as SplObjectStorageAlias;
 
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
@@ -13,38 +12,21 @@ use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 class ServerHandler implements ServerHandlerInterface
 {
     /** @var MyLoggerInterface */
-    private $logger;
+    protected $logger;
     
     /** @var SerializerInterface */
-    private $serializer;
-    
-    /** @var \SplObjectStorage */
-    private $clients;
-    
-    /** @var int */
-    private $connectionSequenceId = 0;
-    
-    /** @var array */
-    private $names;
-    
-    /** @var array */
-    private $games;
+    protected $serializer;
     
     /** @var bool */
-    private $logExceptionTrace;
+    protected $logExceptionTrace;
     
     public function __construct(
         MyLoggerInterface $logger,
         SerializerInterface $serializer,
         bool $logExceptionTrace
     ) {
-        $this->logger           = $logger;
-        $this->serializer       = $serializer;
-        
-        $this->clients  = new SplObjectStorageAlias();
-        $this->names    = [];
-        $this->games    = [];
-        
+        $this->logger               = $logger;
+        $this->serializer           = $serializer;
         $this->logExceptionTrace    = $logExceptionTrace;
     }
     

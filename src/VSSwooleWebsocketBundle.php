@@ -8,7 +8,7 @@ use Vankosoft\SwooleWebsocketBundle\DependencyInjection\VSSwooleWebsocketExtensi
 
 class VSSwooleWebsocketBundle extends AbstractBundle
 {
-    public function build( ContainerBuilder $container )
+    public function build( ContainerBuilder $container ): void
     {
         parent::build( $container );
     }
