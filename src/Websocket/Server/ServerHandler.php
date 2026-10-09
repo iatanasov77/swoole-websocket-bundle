@@ -37,7 +37,7 @@ class ServerHandler implements ServerHandlerInterface
     
     public function onOpen( WebsocketServer $server, Request $request ): void
     {
-        $this->logger->log( "Swoole Server Call Subscriber onOpened !!!" );
+        $this->logger->log( "Swoole Server Open Connection: {$request->fd}", 'GameServer' );
     }
     
     public function onMessage( WebsocketServer $server, Frame $frame ): void
@@ -49,6 +49,6 @@ class ServerHandler implements ServerHandlerInterface
     
     public function onClose( WebsocketServer $server, int $fd ): void
     {
-        $this->logger->log( "Swoole Server Call Subscriber onClose !!!" );
+        $this->logger->log( "Swoole Server Close Connection: {$fd}" );
     }
 }
