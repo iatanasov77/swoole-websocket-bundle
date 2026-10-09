@@ -15,7 +15,6 @@ final class WebsocketSwooleClient extends AbstractWebsocketClient
         parent::__construct( $websocketUrl, $serializer );
         
         $this->connection   = $connection;
-        $this->clientId     = $connection->fd;
     }
     
     public function send( object $msg ): void
