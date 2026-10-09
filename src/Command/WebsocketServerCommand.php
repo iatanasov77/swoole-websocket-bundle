@@ -5,6 +5,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Psr\Container\ContainerInterface;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 use Vankosoft\WebsocketBundle\Runtime\Runtime;
@@ -18,6 +19,9 @@ use Vankosoft\WebsocketBundle\Websocket\Server\ServerHandlerInterface;
 )]
 final class WebsocketServerCommand extends Command
 {
+    /** @var ContainerInterface */
+    private $container;
+    
     /** @var MyLoggerInterface */
     private $websocketLogger;
     
@@ -37,11 +41,14 @@ final class WebsocketServerCommand extends Command
     private $serverHandler;
     
     public function __construct(
+        ContainerInterface $container,
         MyLoggerInterface $websocketLogger,
         string $documentRoot,
         ServerHandlerInterface $serverHandler
     ) {
         parent::__construct();
+        
+        $this->container = $container;
         
         $this->websocketLogger  = $websocketLogger;
         $this->documentRoot     = $documentRoot;
@@ -77,6 +84,7 @@ final class WebsocketServerCommand extends Command
     public function configure()
     {
         $this->setHelp('Websocket Server')
+            ->addOption( 'handler', '', InputOption::VALUE_OPTIONAL, 'Handler',  'vs_websocket_server_handler' )
             ->addOption( 'host', '', InputOption::VALUE_OPTIONAL, 'Host',  '127.0.0.1' )
             ->addOption( 'port', '', InputOption::VALUE_OPTIONAL, 'Port', 8000 )
         ;
@@ -89,9 +97,10 @@ final class WebsocketServerCommand extends Command
         
         $options = ['host' => $input->getOption( 'host' ), 'port' => $input->getOption( 'port' )];
         $options = \array_replace_recursive( $this->runtimeOption, $options );
+        $this->serverHandler    = $this->container->get( $input->getOption( 'handler' ) );
         
         $server = new Server( $this->websocketLogger, $options );
-        $server->setHandler( $this->serverHandler );
+        $server->setHandler( $this->serverHandler ) );
         $server->init();
         $server->setEvent();
         $server->start();

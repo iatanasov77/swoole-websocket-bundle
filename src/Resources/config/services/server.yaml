@@ -17,6 +17,7 @@ services:
     vs_websocket_server_command:
         class: Vankosoft\WebsocketBundle\Command\WebsocketServerCommand
         arguments:
+            - '@service_container'
             - '@vs_websocket_logger'
             - "%vs_websocket.document_root%"
             - '@vs_websocket_server_handler'

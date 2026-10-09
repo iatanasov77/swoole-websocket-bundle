@@ -20,14 +20,24 @@ class ServerHandler implements ServerHandlerInterface
     /** @var bool */
     protected $logExceptionTrace;
     
+    /** @var string */
+    protected $websocketUrl,
+    
+    /** @var WebsocketClientFactory */
+    protected $wsClientFactory;
+    
     public function __construct(
         MyLoggerInterface $logger,
         SerializerInterface $serializer,
-        bool $logExceptionTrace
+        bool $logExceptionTrace,
+        string $websocketUrl,
+        WebsocketClientFactory $wsClientFactory
     ) {
         $this->logger               = $logger;
         $this->serializer           = $serializer;
         $this->logExceptionTrace    = $logExceptionTrace;
+        $this->websocketUrl         = $websocketUrl;
+        $this->wsClientFactory      = $wsClientFactory;
     }
     
     public function onStart( WebsocketServer $server ): void
