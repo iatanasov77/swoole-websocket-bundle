@@ -3,8 +3,6 @@
 use Thruway\Connection;
 use Thruway\ClientSession;
 
-use Vankosoft\WebsocketBundle\Websocket\Client\AbstractWebsocketClient;
-
 /**
  * https://stackoverflow.com/a/26152659/12693473
  */

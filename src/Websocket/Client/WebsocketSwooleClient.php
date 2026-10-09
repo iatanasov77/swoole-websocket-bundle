@@ -3,8 +3,6 @@
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
-
-use Vankosoft\WebsocketBundle\Websocket\Client\AbstractWebsocketClient;
 use Swoole\WebSocket\Server as WebsocketServer;
 
 final class WebsocketSwooleClient extends AbstractWebsocketClient

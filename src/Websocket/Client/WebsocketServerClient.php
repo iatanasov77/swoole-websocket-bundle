@@ -3,8 +3,6 @@
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 
-use Vankosoft\WebsocketBundle\Websocket\Client\AbstractWebsocketClient;
-
 /**
  * WebsocketClient Based on AMPHP
  * ==============================
