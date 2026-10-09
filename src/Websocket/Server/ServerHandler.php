@@ -7,7 +7,12 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
+
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
+
+use App\Component\Websocket\WebsocketClientFactory;
+// use Vankosoft\WebsocketBundle\Websocket\WebsocketClientFactory;
+use Vankosoft\WebsocketBundle\Websocket\WebSocketState;
 
 class ServerHandler implements ServerHandlerInterface
 {
@@ -53,6 +58,10 @@ class ServerHandler implements ServerHandlerInterface
     public function onMessage( WebsocketServer $server, Frame $frame ): void
     {
         $this->logger->log( "Swoole Server Call Subscriber onMessage: {$frame->data}" );
+        
+        $webSocket  = $this->wsClientFactory->createClient( WebsocketClientFactory::SWOOLE_CLIENT, $this->websocketUrl, $server );
+        $webSocket->State   = WebSocketState::Open;
+        
         
         $server->push( $frame->fd, \json_encode( ["hello", time()] ) );
     }
