@@ -100,7 +100,7 @@ final class WebsocketServerCommand extends Command
         $this->serverHandler    = $this->container->get( $input->getOption( 'handler' ) );
         
         $server = new Server( $this->websocketLogger, $options );
-        $server->setHandler( $this->serverHandler ) );
+        $server->setHandler( $this->serverHandler );
         $server->init();
         $server->setEvent();
         $server->start();
