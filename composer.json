@@ -22,12 +22,7 @@
         "symfony/config": "^7.4|^8.1",
         "symfony/dependency-injection": "^7.4|^8.1",
         
-        "swoole-bundle/swoole-bundle": "^0.35",
-        
-        "cboden/ratchet": "0.4.x-dev",
-        "react/react": "^1.4",
-        "react/partial": "^3.0",
-        "amphp/amp": "^3.1"
+        "swoole-bundle/swoole-bundle": "^0.35"
     },
     "minimum-stability" : "dev"
 }
