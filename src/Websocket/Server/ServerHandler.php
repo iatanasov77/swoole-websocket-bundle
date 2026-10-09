@@ -30,6 +30,11 @@ class ServerHandler implements ServerHandlerInterface
         $this->logExceptionTrace    = $logExceptionTrace;
     }
     
+    public function onStart( WebsocketServer $server ): void
+    {
+        $this->logger->log( "Swoole Server Call Subscriber onStart !!!" );
+    }
+    
     public function onOpen( WebsocketServer $server, Request $request ): void
     {
         $this->logger->log( "Swoole Server Call Subscriber onOpened !!!" );

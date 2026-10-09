@@ -6,6 +6,7 @@ use Swoole\WebSocket\Server as WebsocketServer;
 
 interface ServerHandlerInterface
 {
+    public function onStart( WebsocketServer $server ): void;
     public function onOpen( WebsocketServer $server, Request $request ): void;
     public function onMessage( WebsocketServer $server, Frame $frame ): void;
     public function onClose( WebsocketServer $server, int $fd ): void;
