@@ -92,13 +92,8 @@ final class WebsocketServerCommand extends Command
         
         $server = new Server( $this->websocketLogger, $options );
         $server->setHandler( $this->serverHandler );
-        
         $server->init();
-        $server->on( 'Start', function () use ( $output, $server ) {
-            $output->writeln( "Websocket is now listening in {$server->getServer()->host}: {$server->getServer()->port}" );
-        });
         $server->setEvent();
-        $this->server = $server;
         $server->start();
         
         return Command::SUCCESS;
