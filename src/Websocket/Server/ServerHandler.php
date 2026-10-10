@@ -62,7 +62,6 @@ class ServerHandler implements ServerHandlerInterface
         $webSocket  = $this->wsClientFactory->createClient( WebsocketClientFactory::SWOOLE_CLIENT, $this->websocketUrl, $server );
         $webSocket->State   = WebSocketState::Open;
         
-        $webSocket->
         $server->push( $frame->fd, \json_encode( ["hello", time()] ) );
     }
     

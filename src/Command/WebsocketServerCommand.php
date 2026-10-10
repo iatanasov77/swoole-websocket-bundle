@@ -97,7 +97,10 @@ final class WebsocketServerCommand extends Command
         
         $options = ['host' => $input->getOption( 'host' ), 'port' => $input->getOption( 'port' )];
         $options = \array_replace_recursive( $this->runtimeOption, $options );
-        $this->serverHandler    = $this->container->get( $input->getOption( 'handler' ) );
+        
+        $handler = $input->getOption( 'handler' );
+        $this->serverHandler    = $this->container->get( $handler );
+        $this->websocketLogger->log( "Swoole Websocket Server Handler: {$handler}"  );
         
         $server = new Server( $this->websocketLogger, $options );
         $server->setHandler( $this->serverHandler );
