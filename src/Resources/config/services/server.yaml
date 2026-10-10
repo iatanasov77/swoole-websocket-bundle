@@ -22,3 +22,15 @@ services:
             - '@vs_websocket_logger'
             - '@serializer'
             - "%vs_websocket.exeption_trace%"
+    
+    vs_websocket_ratchet_server_command:
+        class: Vankosoft\WebsocketBundle\Command\WebsocketRatchetServerCommand
+        arguments:
+            - '@service_container'
+            - '@vs_websocket_logger'
+            - {
+                sslCertificateKey: '%env(SSL_CERTIFICATE_KEY)%',
+                sslCertificateCert: '%env(SSL_CERTIFICATE_CERT)%'
+            }
+        tags:
+            - 'console.command'
