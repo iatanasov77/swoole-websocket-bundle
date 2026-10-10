@@ -70,4 +70,9 @@ class ServerHandler implements ServerHandlerInterface
     {
         $this->logger->log( "Swoole Server Close Connection: {$fd}" );
     }
+    
+    public function onDisconnect( WebsocketServer $server, int $fd ): void
+    {
+        $this->logger->log( "Swoole Server Disconnect Connection: {$fd}" );
+    });
 }

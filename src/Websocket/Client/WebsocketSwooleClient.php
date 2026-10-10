@@ -7,7 +7,7 @@ use Swoole\WebSocket\Server as WebsocketServer;
 
 final class WebsocketSwooleClient extends AbstractWebsocketClient
 {
-    /** @var ConnectionInterface */
+    /** @var WebsocketServer */
     private $connection;
     
     public function __construct( string $websocketUrl, SerializerInterface $serializer, WebsocketServer $connection )
