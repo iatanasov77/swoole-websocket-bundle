@@ -111,7 +111,7 @@ class SwooleServer
         $this->config['port'] = $port;
     }
     
-    public function setHandler( ServerHandlerInterface $handler ): void
+    public function setHandler( SwooleServerHandlerInterface $handler ): void
     {
         $this->serverHandler = $handler;
     }
