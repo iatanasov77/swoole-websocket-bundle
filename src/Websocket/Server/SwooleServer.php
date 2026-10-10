@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Swoole\Http\Request;
 use Swoole\Http\Response;
 use Swoole\WebSocket\Frame;
-use Swoole\WebSocket\SwooleServer as WebsocketServer;
+use Swoole\WebSocket\Server as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 
