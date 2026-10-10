@@ -50,7 +50,7 @@ class SwooleServerHandler implements SwooleServerHandlerInterface
     
     public function onOpen( WebsocketServer $server, Request $request ): void
     {
-        $this->logger->log( "Swoole Server Open Connection: {$request->fd}", 'GameServer' );
+        $this->logger->log( "Swoole Server Open Connection: {$request->fd}", 'WebsocketServer' );
     }
     
     public function onMessage( WebsocketServer $server, Frame $frame ): void

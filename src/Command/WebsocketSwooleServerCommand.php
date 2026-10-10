@@ -82,7 +82,8 @@ final class WebsocketSwooleServerCommand extends Command
 
     public function configure()
     {
-        $this->setHelp('Websocket Server')
+        $this
+            ->setHelp( 'The <info>%command.name%</info> starts the WebSocket Swoole Server.' )
             ->addOption( 'handler', '', InputOption::VALUE_OPTIONAL, 'Handler',  'vs_websocket_server_handler' )
             ->addOption( 'host', '', InputOption::VALUE_OPTIONAL, 'Host',  '127.0.0.1' )
             ->addOption( 'port', '', InputOption::VALUE_OPTIONAL, 'Port', 8000 )

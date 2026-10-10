@@ -35,7 +35,7 @@ use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
  * Play Original Game: https://backgammon.azurewebsites.net/
  */
 #[AsCommand(
-    name: 'vankosoft::ratchet-websocket:server',
+    name: 'vankosoft:ratchet-websocket:server',
     description: 'Start Ratchet WebSocket Server',
     hidden: false
 )]
@@ -92,7 +92,7 @@ final class WebsocketRatchetServerCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setHelp( 'The <info>%command.name%</info> starts the GamePlatform WebSocket Game Server.' )
+            ->setHelp( 'The <info>%command.name%</info> starts the WebSocket Ratchet Server.' )
             ->addOption( 'handler', '', InputOption::VALUE_OPTIONAL, 'Handler',  'vs_websocket_server_handler' )
             ->addOption( 'host', '', InputOption::VALUE_OPTIONAL, 'Host',  '127.0.0.1' )
             ->addOption( 'port', '', InputOption::VALUE_OPTIONAL, 'Port', 8000 );
