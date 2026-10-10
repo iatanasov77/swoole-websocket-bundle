@@ -20,7 +20,6 @@ services:
             - '@service_container'
             - '@vs_websocket_logger'
             - "%vs_websocket.document_root%"
-            - '@vs_websocket_server_handler'
         tags:
             - 'console.command'
     

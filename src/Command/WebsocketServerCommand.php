@@ -37,14 +37,13 @@ final class WebsocketServerCommand extends Command
         'settings' => [],
     ];
     
-    /** @var ServerHandlerInteface */
+    /** @var ServerHandlerInteface | null */
     private $serverHandler;
     
     public function __construct(
         ContainerInterface $container,
         MyLoggerInterface $websocketLogger,
-        string $documentRoot,
-        ServerHandlerInterface $serverHandler
+        string $documentRoot
     ) {
         parent::__construct();
         
@@ -59,8 +58,6 @@ final class WebsocketServerCommand extends Command
             \Swoole\Constant::OPTION_ENABLE_STATIC_HANDLER => true,
             \Swoole\Constant::OPTION_DOCUMENT_ROOT => $this->documentRoot,
         ];
-        
-        $this->serverHandler = $serverHandler;
     }
     
     public function sigHandler( $signo )
@@ -70,7 +67,10 @@ final class WebsocketServerCommand extends Command
          */
         switch ( $signo ) {
             case SIGTERM:
-                $this->serverHandler->serverWasTerminated();
+                if ( $this->serverHandler ) {
+                    $this->serverHandler->serverWasTerminated();
+                }
+                
                 exit;
                 break;
             case SIGHUP:
