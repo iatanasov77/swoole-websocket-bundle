@@ -9,9 +9,7 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-
-use App\Component\Websocket\WebsocketClientFactory;
-// use Vankosoft\WebsocketBundle\Websocket\WebsocketClientFactory;
+use Vankosoft\WebsocketBundle\Websocket\WebsocketClientFactory;
 use Vankosoft\WebsocketBundle\Websocket\WebSocketState;
 
 class ServerHandler implements ServerHandlerInterface
