@@ -7,8 +7,8 @@ services:
         autowire: true
         autoconfigure: true
     
-    vs_websocket_server_command:
-        class: Vankosoft\WebsocketBundle\Command\WebsocketServerCommand
+    vs_websocket_swoole_server_command:
+        class: Vankosoft\WebsocketBundle\Command\WebsocketSwooleServerCommand
         arguments:
             - '@service_container'
             - '@vs_websocket_logger'
@@ -16,8 +16,8 @@ services:
         tags:
             - 'console.command'
     
-    vs_websocket_server_handler:
-        class: Vankosoft\WebsocketBundle\Websocket\Server\ServerHandler
+    vs_websocket_swoole_server_handler:
+        class: Vankosoft\WebsocketBundle\Websocket\Server\SwooleServerHandler
         arguments:
             - '@vs_websocket_logger'
             - '@serializer'

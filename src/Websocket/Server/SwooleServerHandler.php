@@ -12,7 +12,7 @@ use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 use Vankosoft\WebsocketBundle\Websocket\WebsocketClientFactory;
 use Vankosoft\WebsocketBundle\Websocket\WebSocketState;
 
-class ServerHandler implements ServerHandlerInterface
+class SwooleServerHandler implements ServerHandlerInterface
 {
     /** @var MyLoggerInterface */
     protected $logger;

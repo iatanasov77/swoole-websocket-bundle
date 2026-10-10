@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Swoole\Http\Request;
 use Swoole\Http\Response;
 use Swoole\WebSocket\Frame;
-use Swoole\WebSocket\Server as WebsocketServer;
+use Swoole\WebSocket\SwooleServer as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
 
@@ -17,7 +17,7 @@ use Vankosoft\WebsocketBundle\Event\MessageEvent;
 use Vankosoft\WebsocketBundle\Event\CloseEvent;
 use Vankosoft\WebsocketBundle\Event\DisconnectEvent;
 
-class Server
+class SwooleServer
 {
     /** @var array */
     protected const DEFAULT_OPTIONS = [

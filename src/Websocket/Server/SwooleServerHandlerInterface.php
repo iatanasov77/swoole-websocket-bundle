@@ -4,7 +4,7 @@ use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 
-interface ServerHandlerInterface
+interface SwooleServerHandlerInterface
 {
     public function onStart( WebsocketServer $server ): void;
     public function onOpen( WebsocketServer $server, Request $request ): void;

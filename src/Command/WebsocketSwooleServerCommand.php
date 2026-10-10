@@ -8,16 +8,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Psr\Container\ContainerInterface;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use Vankosoft\WebsocketBundle\Runtime\Runtime;
-use Vankosoft\WebsocketBundle\Websocket\Server\Server;
-use Vankosoft\WebsocketBundle\Websocket\Server\ServerHandlerInterface;
+use Vankosoft\WebsocketBundle\Websocket\Server\SwooleServer;
+use Vankosoft\WebsocketBundle\Websocket\Server\SwooleServerHandlerInterface;
 
 #[AsCommand(
     name: 'vankosoft:swoole-websocket:server',
     description: 'Start Swoole WebSocket Server',
     hidden: false
 )]
-final class WebsocketServerCommand extends Command
+final class WebsocketSwooleServerCommand extends Command
 {
     /** @var ContainerInterface */
     private $container;
@@ -101,8 +100,11 @@ final class WebsocketServerCommand extends Command
         $handler = $input->getOption( 'handler' );
         $this->serverHandler    = $this->container->get( $handler );
         $this->websocketLogger->log( "Swoole Websocket Server Handler: {$handler}"  );
+        if ( ! ( $this->serverHandler instanceof SwooleServerHandlerInterface ) ) {
+            throw new \RuntimeException( 'Wrong Swoole Server Handler !!!' );
+        }
         
-        $server = new Server( $this->websocketLogger, $options );
+        $server = new SwooleServer( $this->websocketLogger, $options );
         $server->setHandler( $this->serverHandler );
         $server->init();
         $server->setEvent();
