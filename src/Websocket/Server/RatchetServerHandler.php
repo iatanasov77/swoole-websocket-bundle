@@ -2,8 +2,7 @@
 
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
-
+use SplObjectStorage as SplObjectStorageAlias;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
@@ -31,7 +30,7 @@ class RatchetServerHandler implements MessageComponentInterface
     /** @var WebsocketClientFactory */
     protected $wsClientFactory;
     
-    /** @var \SplObjectStorage */
+    /** @var SplObjectStorageAlias */
     protected $clients;
     
     public function __construct(
@@ -47,7 +46,7 @@ class RatchetServerHandler implements MessageComponentInterface
         $this->websocketUrl         = $websocketUrl;
         $this->wsClientFactory      = $wsClientFactory;
         
-        $this->clients = new \SplObjectStorage();
+        $this->clients              = new SplObjectStorageAlias();
     }
     
     public function onOpen( ConnectionInterface $conn )

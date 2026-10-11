@@ -2,7 +2,7 @@
 
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SplObjectStorage as SplObjectStorageAlias;
 
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
@@ -29,6 +29,9 @@ class SwooleServerHandler implements SwooleServerHandlerInterface
     /** @var WebsocketClientFactory */
     protected $wsClientFactory;
     
+    /** @var SplObjectStorageAlias */
+    protected $clients;
+    
     public function __construct(
         MyLoggerInterface $logger,
         SerializerInterface $serializer,
@@ -41,6 +44,8 @@ class SwooleServerHandler implements SwooleServerHandlerInterface
         $this->logExceptionTrace    = $logExceptionTrace;
         $this->websocketUrl         = $websocketUrl;
         $this->wsClientFactory      = $wsClientFactory;
+        
+        $this->clients              = new SplObjectStorageAlias();
     }
     
     public function onStart( WebsocketServer $server ): void
