@@ -10,11 +10,14 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use Vankosoft\WebsocketBundle\Event\CloseEvent;
-use Vankosoft\WebsocketBundle\Event\MessageEvent;
-use Vankosoft\WebsocketBundle\Event\OpenEvent;
 
-class Server
+use Vankosoft\WebsocketBundle\Event\StartEvent;
+use Vankosoft\WebsocketBundle\Event\OpenEvent;
+use Vankosoft\WebsocketBundle\Event\MessageEvent;
+use Vankosoft\WebsocketBundle\Event\CloseEvent;
+use Vankosoft\WebsocketBundle\Event\DisconnectEvent;
+
+class SwooleServer
 {
     /** @var array */
     protected const DEFAULT_OPTIONS = [
@@ -32,7 +35,7 @@ class Server
     protected ?WebsocketServer $server;
     
     /** @var ServerHandlerInterface */
-    protected ?ServerHandlerInterface $serverHandler;
+    protected ?SwooleServerHandlerInterface $serverHandler;
     
     /** @var bool */
     protected bool $initialized;
@@ -76,9 +79,11 @@ class Server
 
     public function setEvent(): void
     {
+        $this->server->on( StartEvent::NAME, [$this->serverHandler, 'onStart'] );
         $this->server->on( OpenEvent::NAME, [$this->serverHandler, 'onOpen'] );
         $this->server->on( MessageEvent::NAME, [$this->serverHandler, 'onMessage'] );
         $this->server->on( CloseEvent::NAME, [$this->serverHandler, 'onClose'] );
+        $this->server->on( DisconnectEvent::NAME, [$this->serverHandler, 'onDisconnect'] );
     }
 
     public function on( string $event, callable $callable ): void
@@ -106,7 +111,7 @@ class Server
         $this->config['port'] = $port;
     }
     
-    public function setHandler( ServerHandlerInterface $handler ): void
+    public function setHandler( SwooleServerHandlerInterface $handler ): void
     {
         $this->serverHandler = $handler;
     }

@@ -45,4 +45,9 @@ abstract class AbstractWebsocketClient implements WebsocketClientInterface
     {
         return $this->clientId;
     }
+    
+    public function setClientId( mixed $clientId ): void
+    {
+        $this->clientId = $clientId;
+    }
 }

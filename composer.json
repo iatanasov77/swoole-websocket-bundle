@@ -23,5 +23,6 @@
         "symfony/dependency-injection": "^7.4|^8.1",
         
         "swoole-bundle/swoole-bundle": "^0.35"
-    }
+    },
+    "minimum-stability" : "dev"
 }

@@ -1,4 +1,7 @@
 parameters:
+    vs_websocket_ratchet_url: '%env(WEBSOCKET_RATCHET_TEST_URL)%'
+    vs_websocket_swoole_url: '%env(WEBSOCKET_SWOOLE_TEST_URL)%'
+    
     vs_websocket.document_root: "%kernel.project_dir%/public"
     vs_websocket.exeption_trace: "%env(bool:WEBSOCKET_EXCEPTION_TRACE)%"
 
@@ -7,25 +10,41 @@ services:
         autowire: true
         autoconfigure: true
     
-    vs_websocket_logger:
-        class: Vankosoft\WebsocketBundle\Logger\WebsocketLogger
-        public: true
+    vs_websocket_swoole_server_command:
+        class: Vankosoft\WebsocketBundle\Command\WebsocketSwooleServerCommand
         arguments:
-            - '@monolog.logger.test_websocket'
-            - '%env(APP_ENV)%'
-    
-    vs_websocket_server_command:
-        class: Vankosoft\WebsocketBundle\Command\WebsocketServerCommand
-        arguments:
+            - '@service_container'
             - '@vs_websocket_logger'
             - "%vs_websocket.document_root%"
-            - '@vs_websocket_server_handler'
         tags:
             - 'console.command'
     
-    vs_websocket_server_handler:
-        class: Vankosoft\WebsocketBundle\Websocket\Server\ServerHandler
+    vs_websocket_swoole_server_handler:
+        class: Vankosoft\WebsocketBundle\Websocket\Server\SwooleServerHandler
         arguments:
             - '@vs_websocket_logger'
             - '@serializer'
-            - "%vs_websocket.exeption_trace%"
+            - '%vs_websocket.exeption_trace%'
+            - '%vs_websocket_swoole_url%'
+            - '@vs_websocket_client_factory'
+    
+    vs_websocket_ratchet_server_command:
+        class: Vankosoft\WebsocketBundle\Command\WebsocketRatchetServerCommand
+        arguments:
+            - '@service_container'
+            - '@vs_websocket_logger'
+            - {
+                sslCertificateKey: '%env(SSL_CERTIFICATE_KEY)%',
+                sslCertificateCert: '%env(SSL_CERTIFICATE_CERT)%'
+            }
+        tags:
+            - 'console.command'
+    
+    vs_websocket_ratchet_server_handler:
+        class: Vankosoft\WebsocketBundle\Websocket\Server\RatchetServerHandler
+        arguments:
+            - '@vs_websocket_logger'
+            - '@serializer'
+            - '%vs_websocket.exeption_trace%'
+            - '%vs_websocket_ratchet_url%'
+            - '@vs_websocket_client_factory'

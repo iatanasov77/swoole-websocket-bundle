@@ -1,8 +1,16 @@
 imports:
     - { resource: services/server.yaml }
+    - { resource: services/client.yaml }
     
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         public: true
+    
+    vs_websocket_logger:
+        class: Vankosoft\WebsocketBundle\Logger\WebsocketLogger
+        public: true
+        arguments:
+            - '@monolog.logger.test_websocket'
+            - '%env(APP_ENV)%'

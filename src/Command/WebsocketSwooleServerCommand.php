@@ -5,19 +5,22 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Psr\Container\ContainerInterface;
 
 use Vankosoft\ApplicationBundle\Component\MyLoggerInterface;
-use Vankosoft\WebsocketBundle\Runtime\Runtime;
-use Vankosoft\WebsocketBundle\Websocket\Server\Server;
-use Vankosoft\WebsocketBundle\Websocket\Server\ServerHandlerInterface;
+use Vankosoft\WebsocketBundle\Websocket\Server\SwooleServer;
+use Vankosoft\WebsocketBundle\Websocket\Server\SwooleServerHandlerInterface;
 
 #[AsCommand(
     name: 'vankosoft:swoole-websocket:server',
     description: 'Start Swoole WebSocket Server',
     hidden: false
 )]
-final class WebsocketServerCommand extends Command
+final class WebsocketSwooleServerCommand extends Command
 {
+    /** @var ContainerInterface */
+    private $container;
+    
     /** @var MyLoggerInterface */
     private $websocketLogger;
     
@@ -33,15 +36,17 @@ final class WebsocketServerCommand extends Command
         'settings' => [],
     ];
     
-    /** @var ServerHandlerInteface */
+    /** @var ServerHandlerInteface | null */
     private $serverHandler;
     
     public function __construct(
+        ContainerInterface $container,
         MyLoggerInterface $websocketLogger,
-        string $documentRoot,
-        ServerHandlerInterface $serverHandler
+        string $documentRoot
     ) {
         parent::__construct();
+        
+        $this->container = $container;
         
         $this->websocketLogger  = $websocketLogger;
         $this->documentRoot     = $documentRoot;
@@ -52,8 +57,6 @@ final class WebsocketServerCommand extends Command
             \Swoole\Constant::OPTION_ENABLE_STATIC_HANDLER => true,
             \Swoole\Constant::OPTION_DOCUMENT_ROOT => $this->documentRoot,
         ];
-        
-        $this->serverHandler = $serverHandler;
     }
     
     public function sigHandler( $signo )
@@ -63,7 +66,10 @@ final class WebsocketServerCommand extends Command
          */
         switch ( $signo ) {
             case SIGTERM:
-                $this->serverHandler->serverWasTerminated();
+                if ( $this->serverHandler ) {
+                    $this->serverHandler->serverWasTerminated();
+                }
+                
                 exit;
                 break;
             case SIGHUP:
@@ -76,7 +82,9 @@ final class WebsocketServerCommand extends Command
 
     public function configure()
     {
-        $this->setHelp('Websocket Server')
+        $this
+            ->setHelp( 'The <info>%command.name%</info> starts the WebSocket Swoole Server.' )
+            ->addOption( 'handler', '', InputOption::VALUE_OPTIONAL, 'Handler',  'vs_websocket_server_handler' )
             ->addOption( 'host', '', InputOption::VALUE_OPTIONAL, 'Host',  '127.0.0.1' )
             ->addOption( 'port', '', InputOption::VALUE_OPTIONAL, 'Port', 8000 )
         ;
@@ -90,15 +98,17 @@ final class WebsocketServerCommand extends Command
         $options = ['host' => $input->getOption( 'host' ), 'port' => $input->getOption( 'port' )];
         $options = \array_replace_recursive( $this->runtimeOption, $options );
         
-        $server = new Server( $this->websocketLogger, $options );
-        $server->setHandler( $this->serverHandler );
+        $handler = $input->getOption( 'handler' );
+        $this->serverHandler    = $this->container->get( $handler );
+        $this->websocketLogger->log( "Swoole Websocket Server Handler: {$handler}"  );
+        if ( ! ( $this->serverHandler instanceof SwooleServerHandlerInterface ) ) {
+            throw new \RuntimeException( 'Wrong Swoole Server Handler !!!' );
+        }
         
+        $server = new SwooleServer( $this->websocketLogger, $options );
+        $server->setHandler( $this->serverHandler );
         $server->init();
-        $server->on( 'Start', function () use ( $output, $server ) {
-            $output->writeln( "Websocket is now listening in {$server->getServer()->host}: {$server->getServer()->port}" );
-        });
         $server->setEvent();
-        $this->server = $server;
         $server->start();
         
         return Command::SUCCESS;

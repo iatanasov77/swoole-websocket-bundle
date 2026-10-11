@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    vs_websocket_client_factory:
+        class: Vankosoft\WebsocketBundle\Websocket\WebsocketClientFactory
+        public: true
+        arguments:
+            - '@serializer'

@@ -1,3 +1,21 @@
+1.2.0	|	Release date: **11.10.2026**
+============================================
+* New Features:
+  - Add Start Event for Swoole Server.
+  - Add Some Composer Requirements.
+  - Add Minimum Stability for Composer.
+  - Remove Addede Composer Requirements.
+  - Improve Swoole Websocket Logging,
+  - Improve Swoole Server Command.
+  - Pass Websocket Server Handler as Command Option.
+  - Add Websocket Clients.
+  - Add Websocket Client Factory.
+  - Rename Websocket Server Components.
+  - Add Ratchet Websocket Server Command.
+  - Creaate a Ratchet Server Handler.
+  - Add a Property into Websockert Server Handlers.
+
+
 1.1.2	|	Release date: **06.10.2026**
 ============================================
 * New Features:
